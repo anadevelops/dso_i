@@ -19,7 +19,7 @@ class Endereco:
     def estado(self, estado):
         self.__estado = estado
 
-class Aluno:
+class Pessoa:
     def __init__(self, nome, cidade, estado):
         self.__nome = nome
         self.__endereco = Endereco(cidade, estado)
@@ -40,21 +40,16 @@ class Aluno:
     def endereco(self, endereco):
         self.__endereco = endereco
 
+class Aluno(Pessoa):
+    def __init__(self, nome, cidade, estado):
+        super().__init__(nome, cidade, estado)
 
-class Professor:
+class Professor(Pessoa):
 
     def __init__(self, orientando: Aluno, nome, cidade, estado):
+        super().__init__(nome, cidade, estado)
         self.__orientando = orientando
-        self.__endereco = Endereco(cidade, estado)
 
-    @property
-    def nome(self):
-        return self.__nome
-    
-    @nome.setter
-    def nome(self, nome):
-        self.__nome = nome
-    
     @property
     def orientando(self):
         return self.__orientando
@@ -62,16 +57,6 @@ class Professor:
     @orientando.setter
     def orientando(self, orientando):
         self.__orientando = orientando
-
-    @property
-    def endereco(self):
-        return self.__endereco
-    
-    @endereco.setter
-    def endereco(self, endereco):
-        self.__endereco = endereco
-
-
 
 a1 = Aluno("Ana", 'Jlle', 'SC')
 p1 = Professor(a1, 'Thais', 'Floripa', 'SC')
