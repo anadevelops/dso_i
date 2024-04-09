@@ -7,12 +7,14 @@ class Livro:
         self.__codigo = codigo
         self.__titulo = titulo
         self.__ano = ano
-        self.__editora = Editora(codigo, nome)
-        self.__autor = Autor(codigo, nome)
-        self.__numero_capitulo = 0
-        self.__titulo_capitulo = None
+        self.__editora = editora
         self.__autores = []
         self.__capitulos = []
+
+        self.__autores.append(autor)
+
+        capitulo = Capitulo(numero_capitulo, titulo_capitulo)
+        self.__capitulos.append(capitulo)
 
     @property
     def codigo(self):
@@ -54,7 +56,26 @@ class Livro:
     def autores(self):
         return self.__autores
     
-    @editora.setter
-    def editora(self, editora):
-        if isinstance(editora, Editora):
-            self.__editora = editora                       
+    def incluir_autor(self, autor: Autor):
+        self.__autores.append(autor)
+
+    def excluir_autor(self, autor: Autor):
+        if autor.nome in self.__autores:
+            for i in self.__autores:
+                if i.nome == autor.nome:
+                    self.__autores.pop(i)
+
+    def incluir_capitulo(self, numero_capitulo: int, titulo_capitulo: str):
+        capitulo = Capitulo(numero_capitulo, titulo_capitulo)
+        self.__capitulos.append(capitulo)
+
+    def excluir_capitulo(self, titulo: str):
+        #if titulo in self.__capitulos.titulo:
+            for i in self.__capitulos:
+                if i.titulo == titulo:
+                    self.__capitulos.pop(i)
+
+    def find_capitulo_by_titulo(self, titulo: str):
+        for i in self.__capitulos:
+            if i.titulo == titulo:
+                return i
