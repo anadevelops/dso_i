@@ -69,13 +69,16 @@ class Livro:
         capitulo = Capitulo(numero_capitulo, titulo_capitulo)
         self.__capitulos.append(capitulo)
 
-    def excluir_capitulo(self, titulo: str):
-        #if titulo in self.__capitulos.titulo:
-            for i in self.__capitulos:
-                if i.titulo == titulo:
-                    self.__capitulos.pop(i)
-
     def find_capitulo_by_titulo(self, titulo: str):
         for i in self.__capitulos:
             if i.titulo == titulo:
                 return i
+        return None
+    
+    def excluir_capitulo(self, titulo: str):
+        #if titulo in self.__capitulos.titulo:
+        if find_capitulo_by_titulo(titulo) == True:
+            i = find_capitulo_by_titulo(titulo)
+            self.__capitulos.pop(i)
+
+    
